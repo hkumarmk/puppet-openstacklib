@@ -34,7 +34,7 @@ class Puppet::Provider::Openstack < Puppet::Provider
     else  # All authentication efforts failed
       raise(Puppet::Error::OpenstackAuthInputError, 'No credentials provided.')
     end
-    args = [object, properties, auth_args].flatten.compact
+    args = [object, properties, auth_args].flatten.compact.reject(&:empty?)
     authenticate_request(service, action, args)
   end
 
@@ -45,7 +45,7 @@ class Puppet::Provider::Openstack < Puppet::Provider
     else  # All authentication efforts failed
       raise(Puppet::Error::OpenstackAuthInputError, 'No credentials provided.')
     end
-    args = [object, properties, auth_args].flatten.compact
+    args = [object, properties, auth_args].flatten.compact.reject(&:empty?)
     authenticate_request(service, action, args)
   end
 
